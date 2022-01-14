@@ -1,0 +1,16 @@
+{
+    "name": "sample Progressive Web App",
+    "short_name": "samplePWA",
+    "description": "sample PWA test version",
+    "icons": [
+        {
+            "src": "./build/assets/samplePWA-icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "./index.html",
+    "display": "fullscreen",
+    "theme_color": "#ff9900",
+    "background_color": "#333"
+}
