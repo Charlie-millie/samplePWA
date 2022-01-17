@@ -253,24 +253,26 @@
     }, {
       key: "sendNotify",
       value: function sendNotify() {
-        /*  if (!("Notification" in window)) {
-              alert("This browser does not support desktop notification");
-          }
-          // Let's check whether notification permissions have already been granted
-          else if (Notification.permission === "granted") {
-              // If it's okay let's create a notification
-              this.randomNotification();
-          }
-          // Otherwise, we need to ask the user for permission
-          else if (Notification.permission !== 'denied') {
-              Notification.requestPermission((permission) => {
-                  // If the user accepts, let's create a notification
-                  if (permission === "granted") {
-                      this.randomNotification();
-                  }
-              });
-          }*/
+        var _this = this;
 
+        if (!("Notification" in window)) {
+          alert("This browser does not support desktop notification");
+        } // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+          // If it's okay let's create a notification
+          this.randomNotification();
+        } // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied') {
+          Notification.requestPermission(function (permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+              _this.randomNotification();
+            }
+          });
+        } else {
+          var randomItem = Math.floor(Math.random() * listData.list.length);
+          alert(listData.list[randomItem].TITLE);
+        }
         /*  Notification.requestPermission((result) => {
               if (result === 'granted') {
                   navigator.serviceWorker.ready.then((registration) => {
@@ -282,7 +284,7 @@
                   });
               }
           });*/
-        this.randomNotification();
+
       }
     }, {
       key: "randomNotification",

@@ -30,7 +30,7 @@ export default class Header {
     }
 
     sendNotify() {
-      /*  if (!("Notification" in window)) {
+        if (!("Notification" in window)) {
             alert("This browser does not support desktop notification");
         }
         // Let's check whether notification permissions have already been granted
@@ -46,7 +46,10 @@ export default class Header {
                     this.randomNotification();
                 }
             });
-        }*/
+        } else {
+            const randomItem = Math.floor(Math.random() * listData.list.length);
+            alert(listData.list[randomItem].TITLE);
+        }
 
       /*  Notification.requestPermission((result) => {
             if (result === 'granted') {
@@ -59,7 +62,7 @@ export default class Header {
                 });
             }
         });*/
-        this.randomNotification();
+
     }
 
     randomNotification() {
