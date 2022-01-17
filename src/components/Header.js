@@ -26,13 +26,7 @@ export default class Header {
             parent: this.target
         });
 
-        this.dom.notification.addEventListener('click', () => {
-         /*   Notification.requestPermission().then((result) => {
-                if (result === 'granted') {
-                    this.randomNotification();
-                }
-            });*/
-        });
+        this.dom.notification.addEventListener('click', this.sendNotify.bind(this));
     }
 
     sendNotify() {

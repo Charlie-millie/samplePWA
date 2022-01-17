@@ -248,13 +248,7 @@
           text: "\uB79C\uB364 \uC54C\uB9BC",
           parent: this.target
         });
-        this.dom.notification.addEventListener('click', function () {
-          /*   Notification.requestPermission().then((result) => {
-                 if (result === 'granted') {
-                     this.randomNotification();
-                 }
-             });*/
-        });
+        this.dom.notification.addEventListener('click', this.sendNotify.bind(this));
       }
     }, {
       key: "sendNotify",
