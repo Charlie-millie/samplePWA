@@ -270,6 +270,8 @@
             }
           });
         }
+
+        alert(Notification.permission);
       }
     }, {
       key: "randomNotification",
