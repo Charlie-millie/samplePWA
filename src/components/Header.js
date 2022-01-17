@@ -48,7 +48,7 @@ export default class Header {
             });
         }*/
 
-        Notification.requestPermission((result) => {
+      /*  Notification.requestPermission((result) => {
             if (result === 'granted') {
                 navigator.serviceWorker.ready.then((registration) => {
                     const randomItem = Math.floor(Math.random() * listData.list.length);
@@ -58,8 +58,8 @@ export default class Header {
                     });
                 });
             }
-        });
-
+        });*/
+        this.randomNotification();
     }
 
     randomNotification() {

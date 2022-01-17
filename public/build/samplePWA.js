@@ -270,17 +270,19 @@
                   }
               });
           }*/
-        Notification.requestPermission(function (result) {
-          if (result === 'granted') {
-            navigator.serviceWorker.ready.then(function (registration) {
-              var randomItem = Math.floor(Math.random() * listData.list.length);
-              registration.showNotification(listData.list[randomItem].CATEGORY, {
-                body: listData.list[randomItem].TITLE,
-                icon: listData.list[randomItem].IMAGE_FILE
-              });
-            });
-          }
-        });
+
+        /*  Notification.requestPermission((result) => {
+              if (result === 'granted') {
+                  navigator.serviceWorker.ready.then((registration) => {
+                      const randomItem = Math.floor(Math.random() * listData.list.length);
+                      registration.showNotification(listData.list[randomItem].CATEGORY, {
+                          body:listData.list[randomItem].TITLE,
+                          icon: listData.list[randomItem].IMAGE_FILE,
+                      });
+                  });
+              }
+          });*/
+        this.randomNotification();
       }
     }, {
       key: "randomNotification",
