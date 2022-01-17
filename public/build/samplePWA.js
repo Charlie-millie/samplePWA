@@ -30,5 +30,281 @@
                                 });
                             }
                         })();
-                    !function(){"use strict";function t(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function e(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}function i(t,i,n){return i&&e(t.prototype,i),n&&e(t,n),Object.defineProperty(t,"prototype",{writable:!1}),t}function n(t){return document.querySelector(t)}var r=function(){function e(){throw t(this,e),new Error("[!] This is static class. Creating instances is forbidden.")}return i(e,null,[{key:"createElement",value:function(t,i){var n=i.attrs,r=i.text,a=i.callback,s=i.parent,o=document.createElement("".concat(t));return n&&e.insertAttributes(o,n),a&&a(o),r&&(o.innerHTML=r),s instanceof HTMLElement&&s.appendChild(o),o}},{key:"insertAttributes",value:function(t,e){t instanceof HTMLElement&&Object.keys(e).forEach((function(i){t.setAttribute(i,e[i])}))}}]),e}(),a=function(){function e(i){var n=this,r=i.target;t(this,e),this.target=r,this.dom={items:[]},this.isObserver="IntersectionObserver"in window,this.isObserver&&(this.observer=new IntersectionObserver((function(t){t.forEach((function(t){t.isIntersecting&&(n.loadImages(t.target),n.observer.unobserve(t.target))}))}))),this.registerServiceWorker(),this.init()}return i(e,[{key:"init",value:function(){this.dom.listBox=r.createElement("div",{attrs:{class:"listBox"},parent:this.target}),this.appendList()}},{key:"appendList",value:function(){this.dom.itemList=r.createElement("ul",{attrs:{class:"itemList"},parent:this.dom.listBox});for(var t=0;t<listData.list.length;t++){this.dom.items[t]=r.createElement("li",{attrs:{class:"listItem"},parent:this.dom.itemList});var e=r.createElement("img",{attrs:{src:"./build/assets/impPlaceholder.png","data-src":listData.list[t].IMAGE_FILE,alt:""},parent:this.dom.items[t]});r.createElement("div",{attrs:{class:"textBox"},text:"<h3>".concat(listData.list[t].TITLE,"</h3><span>").concat(listData.list[t].CATEGORY,"</span>"),parent:this.dom.items[t]}),this.isObserver?this.observer.observe(e):this.loadImages(e)}}},{key:"registerServiceWorker",value:function(){"serviceWorker"in navigator&&navigator.serviceWorker.register("./serviceWorker.js")}},{key:"loadImages",value:function(t){t.setAttribute("src",t.getAttribute("data-src")),t.onload=function(){t.removeAttribute("data-src")}}}]),e}();new(function(){function e(i){var n=i.target;t(this,e),this.target=n,this.dom={},this.init(),this.appendNotification()}return i(e,[{key:"init",value:function(){this.dom.title=r.createElement("h2",{attrs:{class:"title"},text:"sample PWA",parent:this.target})}},{key:"appendNotification",value:function(){var t=this;this.dom.notification=r.createElement("button",{attrs:{class:"notification"},text:"랜덤 알림",parent:this.target}),this.dom.notification.addEventListener("click",(function(){Notification.requestPermission().then((function(e){"granted"===e&&t.randomNotification()}))}))}},{key:"randomNotification",value:function(){var t=Math.floor(Math.random()*listData.list.length),e=listData.list[t].CATEGORY,i=listData.list[t].TITLE,n=listData.list[t].IMAGE_FILE;new Notification(e,{body:i,icon:n})}}]),e}())({target:n("header")}),new a({target:n(".content")})}();
+                    
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
+(function () {
+  'use strict';
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    Object.defineProperty(Constructor, "prototype", {
+      writable: false
+    });
+    return Constructor;
+  }
+
+  function $qs(selector) {
+    return document.querySelector(selector);
+  }
+  var DOM = /*#__PURE__*/function () {
+    function DOM() {
+      _classCallCheck(this, DOM);
+
+      throw new Error("[!] This is static class. Creating instances is forbidden.");
+    }
+
+    _createClass(DOM, null, [{
+      key: "createElement",
+      value: function createElement(tagName, _ref) {
+        var attrs = _ref.attrs,
+            text = _ref.text,
+            callback = _ref.callback,
+            parent = _ref.parent;
+        var element = document.createElement("".concat(tagName));
+
+        if (attrs) {
+          DOM.insertAttributes(element, attrs);
+        }
+
+        if (callback) {
+          callback(element);
+        }
+
+        if (text) {
+          element.innerHTML = text;
+        }
+
+        if (parent instanceof HTMLElement) {
+          parent.appendChild(element);
+        }
+
+        return element;
+      }
+    }, {
+      key: "insertAttributes",
+      value: function insertAttributes(element, attrs) {
+        if (element instanceof HTMLElement) {
+          Object.keys(attrs).forEach(function (prop) {
+            element.setAttribute(prop, attrs[prop]);
+          });
+        }
+      }
+    }]);
+
+    return DOM;
+  }();
+
+  var SamplePWA = /*#__PURE__*/function () {
+    function SamplePWA(_ref) {
+      var _this = this;
+
+      var target = _ref.target;
+
+      _classCallCheck(this, SamplePWA);
+
+      this.target = target;
+      this.dom = {
+        items: []
+      };
+      this.isObserver = 'IntersectionObserver' in window;
+
+      if (this.isObserver) {
+        this.observer = new IntersectionObserver(function (items) {
+          items.forEach(function (item) {
+            if (item.isIntersecting) {
+              _this.loadImages(item.target);
+
+              _this.observer.unobserve(item.target);
+            }
+          });
+        });
+      }
+
+      this.registerServiceWorker();
+      this.init();
+    }
+
+    _createClass(SamplePWA, [{
+      key: "init",
+      value: function init() {
+        this.dom.listBox = DOM.createElement('div', {
+          attrs: {
+            "class": "listBox"
+          },
+          parent: this.target
+        });
+        this.appendList();
+      }
+    }, {
+      key: "appendList",
+      value: function appendList() {
+        this.dom.itemList = DOM.createElement('ul', {
+          attrs: {
+            "class": "itemList"
+          },
+          parent: this.dom.listBox
+        });
+
+        for (var i = 0; i < listData.list.length; i++) {
+          this.dom.items[i] = DOM.createElement('li', {
+            attrs: {
+              "class": "listItem"
+            },
+            parent: this.dom.itemList
+          });
+          var img = DOM.createElement('img', {
+            attrs: {
+              // class: "listItem",
+              src: "./build/assets/impPlaceholder.png",
+              'data-src': listData.list[i].IMAGE_FILE,
+              alt: ""
+            },
+            parent: this.dom.items[i]
+          });
+          DOM.createElement('div', {
+            attrs: {
+              "class": "textBox"
+            },
+            text: "<h3>".concat(listData.list[i].TITLE, "</h3><span>").concat(listData.list[i].CATEGORY, "</span>"),
+            parent: this.dom.items[i]
+          });
+
+          if (this.isObserver) {
+            this.observer.observe(img);
+          } else {
+            this.loadImages(img);
+          }
+        }
+      }
+    }, {
+      key: "registerServiceWorker",
+      value: function registerServiceWorker() {
+        // Registering Service Worker
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./serviceWorker.js');
+        }
+      }
+    }, {
+      key: "loadImages",
+      value: function loadImages(image) {
+        image.setAttribute('src', image.getAttribute('data-src'));
+
+        image.onload = function () {
+          image.removeAttribute('data-src');
+        };
+      }
+    }]);
+
+    return SamplePWA;
+  }();
+
+  var Header = /*#__PURE__*/function () {
+    function Header(_ref) {
+      var target = _ref.target;
+
+      _classCallCheck(this, Header);
+
+      this.target = target;
+      this.dom = {};
+      this.init();
+      this.appendNotification();
+    }
+
+    _createClass(Header, [{
+      key: "init",
+      value: function init() {
+        this.dom.title = DOM.createElement('h2', {
+          attrs: {
+            "class": "title"
+          },
+          text: "sample PWA",
+          parent: this.target
+        });
+      }
+    }, {
+      key: "appendNotification",
+      value: function appendNotification() {
+        this.dom.notification = DOM.createElement('button', {
+          attrs: {
+            "class": "notification"
+          },
+          text: "\uB79C\uB364 \uC54C\uB9BC",
+          parent: this.target
+        });
+        this.dom.notification.addEventListener('click', function () {
+          /*   Notification.requestPermission().then((result) => {
+                 if (result === 'granted') {
+                     this.randomNotification();
+                 }
+             });*/
+        });
+      }
+    }, {
+      key: "sendNotify",
+      value: function sendNotify() {
+        var _this = this;
+
+        if (!("Notification" in window)) {
+          alert("This browser does not support desktop notification");
+        } // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+          // If it's okay let's create a notification
+          this.randomNotification();
+        } // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied') {
+          Notification.requestPermission(function (permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+              _this.randomNotification();
+            }
+          });
+        }
+      }
+    }, {
+      key: "randomNotification",
+      value: function randomNotification() {
+        var randomItem = Math.floor(Math.random() * listData.list.length);
+        var notifTitle = listData.list[randomItem].CATEGORY;
+        var notifBody = listData.list[randomItem].TITLE;
+        var notifImg = listData.list[randomItem].IMAGE_FILE;
+        var options = {
+          body: notifBody,
+          icon: notifImg
+        };
+        new Notification(notifTitle, options); // setTimeout(this.randomNotification, 5000);
+      }
+    }]);
+
+    return Header;
+  }();
+
+  function runSampleApp() {
+    new Header({
+      target: $qs("header")
+    });
+    new SamplePWA({
+      target: $qs(".content")
+    });
+  }
+
+  runSampleApp();
+
+})();
 //# sourceMappingURL=samplePWA.js.map
