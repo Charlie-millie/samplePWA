@@ -30,17 +30,14 @@ export default class Header {
     }
 
     sendNotify() {
-        if (!("Notification" in window)) {
+      /*  if (!("Notification" in window)) {
             alert("This browser does not support desktop notification");
         }
-
-
         // Let's check whether notification permissions have already been granted
         else if (Notification.permission === "granted") {
             // If it's okay let's create a notification
             this.randomNotification();
         }
-
         // Otherwise, we need to ask the user for permission
         else if (Notification.permission !== 'denied') {
             Notification.requestPermission((permission) => {
@@ -49,9 +46,19 @@ export default class Header {
                     this.randomNotification();
                 }
             });
-        }
+        }*/
 
-        alert(Notification.permission);
+        Notification.requestPermission((result) => {
+            if (result === 'granted') {
+                navigator.serviceWorker.ready.then((registration) => {
+                    const randomItem = Math.floor(Math.random() * listData.list.length);
+                    registration.showNotification(listData.list[randomItem].CATEGORY, {
+                        body:listData.list[randomItem].TITLE,
+                        icon: listData.list[randomItem].IMAGE_FILE,
+                    });
+                });
+            }
+        });
 
     }
 

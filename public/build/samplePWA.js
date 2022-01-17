@@ -253,25 +253,34 @@
     }, {
       key: "sendNotify",
       value: function sendNotify() {
-        var _this = this;
-
-        if (!("Notification" in window)) {
-          alert("This browser does not support desktop notification");
-        } // Let's check whether notification permissions have already been granted
-        else if (Notification.permission === "granted") {
-          // If it's okay let's create a notification
-          this.randomNotification();
-        } // Otherwise, we need to ask the user for permission
-        else if (Notification.permission !== 'denied') {
-          Notification.requestPermission(function (permission) {
-            // If the user accepts, let's create a notification
-            if (permission === "granted") {
-              _this.randomNotification();
-            }
-          });
-        }
-
-        alert(Notification.permission);
+        /*  if (!("Notification" in window)) {
+              alert("This browser does not support desktop notification");
+          }
+          // Let's check whether notification permissions have already been granted
+          else if (Notification.permission === "granted") {
+              // If it's okay let's create a notification
+              this.randomNotification();
+          }
+          // Otherwise, we need to ask the user for permission
+          else if (Notification.permission !== 'denied') {
+              Notification.requestPermission((permission) => {
+                  // If the user accepts, let's create a notification
+                  if (permission === "granted") {
+                      this.randomNotification();
+                  }
+              });
+          }*/
+        Notification.requestPermission(function (result) {
+          if (result === 'granted') {
+            navigator.serviceWorker.ready.then(function (registration) {
+              var randomItem = Math.floor(Math.random() * listData.list.length);
+              registration.showNotification(listData.list[randomItem].CATEGORY, {
+                body: listData.list[randomItem].TITLE,
+                icon: listData.list[randomItem].IMAGE_FILE
+              });
+            });
+          }
+        });
       }
     }, {
       key: "randomNotification",
